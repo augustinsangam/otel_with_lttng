@@ -86,11 +86,10 @@ WORKDIR /opt/microsoft
 RUN git clone -b 2022.08.15 --depth=1 --recursive https://github.com/microsoft/vcpkg.git
 WORKDIR /opt/microsoft/vcpkg
 RUN ./bootstrap-vcpkg.sh
-ENV VCPKG_ROOT=/opt/microsoft/vcpkg
 
 # opentelemetry-cpp
-WORKDIR /opt/microsoft/vcpkg
-RUN ./vcpkg install nlohmann-json protobuf grpc "opentelemetry-cpp[otlp]"
+WORKDIR /root
+RUN vcpkg install nlohmann-json protobuf grpc "opentelemetry-cpp[otlp]"
 
 # Copy sources
 WORKDIR /code

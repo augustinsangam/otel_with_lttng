@@ -2,17 +2,17 @@
 #include <iostream>
 #include <thread>
 
-#include "opentelemetry/exporters/ostream/span_exporter.h"
-#include "opentelemetry/sdk/trace/simple_processor_factory.h"
-#include "opentelemetry/sdk/trace/tracer_provider_factory.h"
-#include "opentelemetry/trace/provider.h"
+#include <opentelemetry/exporters/ostream/span_exporter.h>
+#include <opentelemetry/sdk/trace/simple_processor_factory.h>
+#include <opentelemetry/sdk/trace/tracer_provider_factory.h>
+#include <opentelemetry/trace/provider.h>
 
 #include "lttng_span_exporter.h"
 
 namespace trace = opentelemetry::trace;
 namespace trace_sdk = opentelemetry::sdk::trace;
 
-static constexpr int n_traces_to_generate = 5;
+static constexpr int n_traces_to_generate = 2000000;
 
 int main() {
   std::cout << "Program running ..." << std::endl;
