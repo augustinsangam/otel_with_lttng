@@ -1,20 +1,22 @@
 cmake_minimum_required(VERSION 3.22.1)
 
 # Setup vcpkg script with CMake (note: should be placed before project() call)
-set(CMAKE_TOOLCHAIN_FILE $ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
+if(NOT DEFINED ENV{VCPKG_ROOT})
+ 	set(VCPKG_ROOT "/opt/microsoft/vcpkg")
+else()
+	set(VCPKG_ROOT $ENV{VCPKG_ROOT})
+endif()
+set(CMAKE_TOOLCHAIN_FILE ${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
 
 project(otel_with_lttng)
 
 set(CMAKE_CXX_STANDARD 11)
 
-# Autodetect vcpkg toolchain
-include($ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
-
 find_package(CURL)
 find_package(LTTngUST REQUIRED)
 find_package(opentelemetry-cpp CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
-find_package(protobuf CONFIG REQUIRED)
+find_package(Protobuf CONFIG REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 
 
